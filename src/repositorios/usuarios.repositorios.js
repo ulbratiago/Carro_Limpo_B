@@ -66,9 +66,10 @@ const usuarioPorIdRepositorio = async (id) => {
 const usuarioPorCidadeRepositorio = async (cidade) => {
   console.log(cidade);
   const usuarioEncontrado = await knex('enderecos')
-  .where('cidade', 'like', `%${cidade}%`)
+  .where('cidade', 'like', `%${cidade}%`, )
   .select('enderecos.cidade', 'usuarios.id', 'usuarios.nome')
   .leftJoin('usuarios', 'usuarios.id', 'enderecos.usuario_id')
+  .where('usuarios.tipo_perfil', 1) 
   .groupBy('enderecos.cidade', 'usuarios.id', 'usuarios.nome');
 
   return usuarioEncontrado

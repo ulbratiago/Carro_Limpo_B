@@ -47,8 +47,8 @@ const deletarProfissionalControlador = async (req, res) => {
 }
 
 const listarProfissionalControlador = async (req, res) => {
-  const {cidade} = req.body;
-  console.log(cidade);
+  const {cidade} = req.query;
+
   const listaProfissional = await listarProfissionalServico(cidade)
 
   return res.status(200).json(listaProfissional)
