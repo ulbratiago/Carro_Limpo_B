@@ -21,7 +21,6 @@ const loginServico = async (userData) => {
     tipo_perfil: usuario.tipo_perfil,
     token,
   }
-
   return usuarioLogado
 }
 

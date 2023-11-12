@@ -27,13 +27,13 @@ const usuarioPorIdRepositorio = async (id) => {
       'usuarios.data_atualizacao',
       knex.raw(
         ` json_agg(json_build_object(
-          'Nome da Rua:', logradouro, 
-          'Número:', enderecos.numero,
-          'Complemento:', enderecos.complemento,
-          'Bairro:', enderecos.bairro,
-          'Cep:', enderecos.cep,
-          'Cidade:', enderecos.cidade,
-          'Estado: ', enderecos.estado)) as endereco`
+          'nomedaRua', logradouro, 
+          'numero', enderecos.numero,
+          'complemento', enderecos.complemento,
+          'bairro', enderecos.bairro,
+          'cep', enderecos.cep,
+          'cidade', enderecos.cidade,
+          'estado', enderecos.estado)) as endereco`
       )
     )
     .leftJoin('enderecos', 'usuarios.id', 'enderecos.usuario_id')

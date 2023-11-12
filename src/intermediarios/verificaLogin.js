@@ -23,6 +23,7 @@ const verificaLogin = async (req, res, next) => {
 
   res.locals.usuarioLogin = usuario
 
+
   return next()
 }
 
