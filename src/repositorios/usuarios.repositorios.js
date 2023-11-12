@@ -63,6 +63,17 @@ const usuarioPorIdRepositorio = async (id) => {
   return usuarioEncontrado[0]
 }
 
+const usuarioPorCidadeRepositorio = async (cidade) => {
+  console.log(cidade);
+  const usuarioEncontrado = await knex('enderecos')
+  .where('cidade', 'like', `%${cidade}%`)
+  .select('enderecos.cidade', 'usuarios.id', 'usuarios.nome')
+  .leftJoin('usuarios', 'usuarios.id', 'enderecos.usuario_id')
+  .groupBy('enderecos.cidade', 'usuarios.id', 'usuarios.nome');
+
+  return usuarioEncontrado
+}
+
 const cadastrarUsuarioRepositorio = async (dadosUsuario) => {
   const usuarioCadastrado = await knex('usuarios')
     .insert(dadosUsuario)
@@ -95,4 +106,5 @@ module.exports = {
   cadastrarUsuarioRepositorio,
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
+  usuarioPorCidadeRepositorio,
 }

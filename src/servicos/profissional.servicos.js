@@ -5,6 +5,7 @@ const {
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
   cadastrarPlanoContratadoRepositorio,
+  usuarioPorCidadeRepositorio
 } = require('../repositorios/index.js')
 const { enviarImagem, excluirImagem } = require('../utilitarios/backBlaze.js')
 
@@ -60,6 +61,14 @@ const cadastrarProfissionalServico = async (dadosUsuario, arquivo) => {
 const detalharProfissionalServico = async (usuarioDecodificado) => {
   const usuarioId = Number(usuarioDecodificado)
   const usuarioEncontrado = await usuarioPorIdRepositorio(usuarioId)
+
+  delete usuarioEncontrado.senha
+
+  return usuarioEncontrado
+}
+
+const listarProfissionalServico = async (cidade) => {
+  const usuarioEncontrado = await usuarioPorCidadeRepositorio(cidade)
 
   delete usuarioEncontrado.senha
 
@@ -146,4 +155,5 @@ module.exports = {
   editarProfissionalServico,
   inativarProfissionalServico,
   deletarProfissionalServico,
+  listarProfissionalServico
 }

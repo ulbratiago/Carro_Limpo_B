@@ -25,8 +25,14 @@ servicoRota.post(
   verificaId,
   cadastrarServicoControlador
 )
-servicoRota.get('/', verificaToken, verificaPerfilUsuario, listarServicoControlador)
-servicoRota.get('/:id', verificaToken, verificaPerfilUsuario, verificaId, detalharServicoControlador)
+servicoRota.get('/', verificaToken, listarServicoControlador)
+servicoRota.get(
+  '/:id',
+  verificaToken,
+  verificaPerfilUsuario,
+  verificaId,
+  detalharServicoControlador
+)
 servicoRota.put(
   '/:id',
   verificaToken,
@@ -37,6 +43,12 @@ servicoRota.put(
   editarServicoControlador
 )
 
-servicoRota.delete('/:id', verificaToken, verificaPerfilUsuario, verificaId, deletarServicoControlador)
+servicoRota.delete(
+  '/:id',
+  verificaToken,
+  verificaPerfilUsuario,
+  verificaId,
+  deletarServicoControlador
+)
 
 module.exports = servicoRota

@@ -14,6 +14,7 @@ const {
   editarProfissionalControlador,
   inativarProfissionalControlador,
   deletarProfissionalControlador,
+  listarProfissionalControlador,
 } = require('../controladores/index.js')
 
 profissionalRota.post(
@@ -25,6 +26,7 @@ profissionalRota.post(
   cadastrarProfissionalControlador
 )
 profissionalRota.get('/', verificaToken, detalharProfissionalControlador)
+profissionalRota.get('/listar', listarProfissionalControlador)
 profissionalRota.put(
   '/',
   verificaToken,

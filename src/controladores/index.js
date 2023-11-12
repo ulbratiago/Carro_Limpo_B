@@ -63,6 +63,7 @@ const {
   editarProfissionalControlador,
   inativarProfissionalControlador,
   deletarProfissionalControlador,
+  listarProfissionalControlador,
 } = require('./profissional.controladores')
 
 const {
@@ -124,6 +125,7 @@ module.exports = {
   editarProfissionalControlador,
   inativarProfissionalControlador,
   deletarProfissionalControlador,
+  listarProfissionalControlador,
   cadastrarAgendamentoControlador,
   listarAgendamentoUsuarioControlador,
   detalharAgendamentoUsuarioControlador,

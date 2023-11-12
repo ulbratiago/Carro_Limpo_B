@@ -11,6 +11,7 @@ const {
   cadastrarUsuarioRepositorio,
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
+  usuarioPorCidadeRepositorio
 } = require('./usuarios.repositorios')
 const {
   cadastrarStatusRepositorio,
@@ -72,6 +73,7 @@ module.exports = {
   cadastrarUsuarioRepositorio,
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
+  usuarioPorCidadeRepositorio,
   cadastrarStatusRepositorio,
   detalharStatusRepositorio,
   listarStatusRepositorio,
