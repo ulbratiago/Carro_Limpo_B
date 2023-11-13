@@ -29,7 +29,7 @@ servicoRota.get('/', verificaToken, listarServicoControlador)
 servicoRota.get(
   '/:id',
   verificaToken,
-  verificaPerfilUsuario,
+  // verificaPerfilUsuario,
   verificaId,
   detalharServicoControlador
 )
