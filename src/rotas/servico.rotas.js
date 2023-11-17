@@ -25,12 +25,10 @@ servicoRota.post(
   verificaId,
   cadastrarServicoControlador
 )
-servicoRota.get('/', verificaToken, listarServicoControlador)
+servicoRota.get('/', listarServicoControlador)
 servicoRota.get(
   '/:id',
-  verificaToken,
-  // verificaPerfilUsuario,
-  verificaId,
+
   detalharServicoControlador
 )
 servicoRota.put(

@@ -64,13 +64,41 @@ const usuarioPorIdRepositorio = async (id) => {
 }
 
 const usuarioPorCidadeRepositorio = async (cidade) => {
-  console.log(cidade);
   const usuarioEncontrado = await knex('enderecos')
-  .where('cidade', 'like', `%${cidade}%`, )
-  .select('enderecos.cidade', 'usuarios.id', 'usuarios.nome')
-  .leftJoin('usuarios', 'usuarios.id', 'enderecos.usuario_id')
-  .where('usuarios.tipo_perfil', 1) 
-  .groupBy('enderecos.cidade', 'usuarios.id', 'usuarios.nome');
+    .select(
+      'enderecos.cidade',
+      'usuarios.id',
+      'usuarios.nome',
+      'usuarios.url_perfil',
+      'usuarios.avaliacao'
+    )
+    .leftJoin('usuarios', 'usuarios.id', 'enderecos.usuario_id')
+    .where((builder) => {
+      builder
+        .where('enderecos.cidade', 'ilike', `%${cidade}%`)
+        .andWhere('usuarios.tipo_perfil', 1)
+        .andWhere('usuarios.ativo', true)
+    })
+    .groupBy(
+      'enderecos.cidade',
+      'usuarios.id',
+      'usuarios.nome',
+      'usuarios.url_perfil',
+      'usuarios.avaliacao'
+    )
+
+  return usuarioEncontrado
+}
+
+const usuarioPorNomeRepositorio = async (nome) => {
+  const usuarioEncontrado = await knex('usuarios')
+    .select('id', 'nome', 'url_perfil', 'avaliacao')
+    .where((builder) => {
+      builder
+        .where('nome', 'ilike', `%${nome}%`)
+        .andWhere('tipo_perfil', 1)
+        .andWhere('ativo', true)
+    })
 
   return usuarioEncontrado
 }
@@ -108,4 +136,5 @@ module.exports = {
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
   usuarioPorCidadeRepositorio,
+  usuarioPorNomeRepositorio,
 }

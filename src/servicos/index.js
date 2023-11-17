@@ -73,6 +73,7 @@ const {
   detalharAgendamentoServico,
   editarAgendamentoServico,
   deletarAgendamentoServico,
+  listarAgendamentoProfissionalServico
 } = require('./agendamento.servicos')
 
 module.exports = {
@@ -128,4 +129,5 @@ module.exports = {
   detalharAgendamentoServico,
   editarAgendamentoServico,
   deletarAgendamentoServico,
+  listarAgendamentoProfissionalServico
 }

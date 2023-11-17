@@ -11,7 +11,8 @@ const {
   cadastrarUsuarioRepositorio,
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
-  usuarioPorCidadeRepositorio
+  usuarioPorCidadeRepositorio,
+  usuarioPorNomeRepositorio,
 } = require('./usuarios.repositorios')
 const {
   cadastrarStatusRepositorio,
@@ -60,6 +61,8 @@ const {
   detalharAgendamentoRepositorio,
   editarAgendamentoRepositorio,
   deletarAgendamentoRepositorio,
+  listarAgendamentoProfissionalRepositorio,
+  listarAgendamentoUsuarioRepositorio,
 } = require('./agendamentos.repositorios')
 
 module.exports = {
@@ -74,6 +77,7 @@ module.exports = {
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
   usuarioPorCidadeRepositorio,
+  usuarioPorNomeRepositorio,
   cadastrarStatusRepositorio,
   detalharStatusRepositorio,
   listarStatusRepositorio,
@@ -105,4 +109,6 @@ module.exports = {
   detalharAgendamentoRepositorio,
   editarAgendamentoRepositorio,
   deletarAgendamentoRepositorio,
+  listarAgendamentoProfissionalRepositorio,
+  listarAgendamentoUsuarioRepositorio,
 }

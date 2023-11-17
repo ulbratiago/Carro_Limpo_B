@@ -132,12 +132,13 @@ create table if not exists agendamentos(
   servico_id integer references servicos(id),
   valor integer not null,
   data_agendamento date not null,
+  horario_agendamento char(5),
   status_id integer references status(id),
   imagem text,
   data_cadastro date not null default current_date,
   avaliacao integer,
   usuario_atualizacao integer references usuarios(id),
-  data_atualizacao date
+  data_atualizacao timestamp
 );
 
 insert into categoria_veiculo (descricao, usuario_cadastro ) 

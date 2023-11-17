@@ -7,16 +7,13 @@ const {
   cancelarAgendamentoUsuarioServico,
   editarAgendamentoServico,
   deletarAgendamentoServico,
+  listarAgendamentoProfissionalServico,
 } = require('../servicos/index.js')
 
 const cadastrarAgendamentoControlador = async (req, res) => {
-  const servico = res.locals.servico
   const { id: usuarioLogado } = res.locals.usuarioDecodificado
-  const Agendamento = await cadastrarAgendamentoServico(
-    req.body,
-    servico,
-    usuarioLogado
-  )
+
+  const Agendamento = await cadastrarAgendamentoServico(req.body, usuarioLogado)
 
   return res.status(201).json(Agendamento)
 }
@@ -47,8 +44,8 @@ const cancelarAgendamentoUsuarioControlador = async (req, res) => {
 }
 
 const listarAgendamentoProfissionalControlador = async (req, res) => {
-  const AgendamentoEncontrado = await listarAgendamentoServico(
-    res.locals.usuarioDecodificado
+  const AgendamentoEncontrado = await listarAgendamentoProfissionalServico(
+    req.query
   )
 
   return res.status(200).json(AgendamentoEncontrado)
@@ -56,7 +53,7 @@ const listarAgendamentoProfissionalControlador = async (req, res) => {
 
 const detalharAgendamentoProfissionalControlador = async (req, res) => {
   const { id: AgendamentoId } = req.params
-  const AgendamentoEncontrado = await detalharAgendamentoServico(
+  const AgendamentoEncontrado = await listarAgendamentoProfissionalServico(
     res.locals.usuarioDecodificado,
     AgendamentoId
   )

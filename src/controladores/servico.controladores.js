@@ -17,16 +17,15 @@ const cadastrarServicoControlador = async (req, res) => {
 }
 
 const listarServicoControlador = async (req, res) => {
-  const { id: usuarioId } = res.locals.usuarioDecodificado
+  const { profissional : usuarioId } = req.query
   const servicoEncontrado = await listarServicoServico(usuarioId)
 
   return res.status(200).json(servicoEncontrado)
 }
 
 const detalharServicoControlador = async (req, res) => {
-  const { id: usuarioId } = res.locals.usuarioDecodificado
   const { id: servicoId } = req.params
-  const servicoEncontrado = await detalharServicoServico(servicoId, usuarioId )
+  const servicoEncontrado = await detalharServicoServico(servicoId)
 
   return res.status(200).json(servicoEncontrado)
 }

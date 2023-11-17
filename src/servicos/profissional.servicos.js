@@ -5,7 +5,8 @@ const {
   editarUsuarioRepositorio,
   deletarUsuarioRepositorio,
   cadastrarPlanoContratadoRepositorio,
-  usuarioPorCidadeRepositorio
+  usuarioPorCidadeRepositorio,
+  usuarioPorNomeRepositorio
 } = require('../repositorios/index.js')
 const { enviarImagem, excluirImagem } = require('../utilitarios/backBlaze.js')
 
@@ -67,12 +68,22 @@ const detalharProfissionalServico = async (usuarioDecodificado) => {
   return usuarioEncontrado
 }
 
-const listarProfissionalServico = async (cidade) => {
+const listarProfissionalServico = async (filtro) => {
+  if(filtro.nome){
+    const{nome} = filtro
+    const usuarioEncontrado = await usuarioPorNomeRepositorio(nome)
+
+    delete usuarioEncontrado.senha
+
+    return usuarioEncontrado
+  }
+  const{cidade} = filtro
   const usuarioEncontrado = await usuarioPorCidadeRepositorio(cidade)
 
   delete usuarioEncontrado.senha
 
   return usuarioEncontrado
+
 }
 
 const editarProfissionalServico = async (

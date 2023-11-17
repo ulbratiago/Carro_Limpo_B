@@ -48,8 +48,9 @@ const listarServicoServico = async (usuario_id) => {
   return servicoEncontrado
 }
 
-const detalharServicoServico = async (id, usuario_id) => {
-  const servicoEncontrado = await listarServicoRepositorio({id, usuario_id})
+const detalharServicoServico = async (id) => {
+  console.log(id);
+  const servicoEncontrado = await listarServicoRepositorio({id})
 
   return servicoEncontrado[0]
 }

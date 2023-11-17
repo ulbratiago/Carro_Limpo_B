@@ -17,7 +17,7 @@ const {
   detalharAgendamentoAdmControlador,
   editarAgendamentoControlador,
   deletarAgendamentoControlador,
-  cancelarAgendamentoUsuarioControlador
+  cancelarAgendamentoUsuarioControlador,
 } = require('../controladores/index.js')
 
 agendamentoRota.post(
@@ -48,7 +48,7 @@ agendamentoRota.patch(
 
 agendamentoRota.get(
   '/profissional',
-  verificaToken,
+  // verificaToken,
   listarAgendamentoProfissionalControlador
 )
 agendamentoRota.get(
