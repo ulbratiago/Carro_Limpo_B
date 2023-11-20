@@ -10,6 +10,9 @@ const {
   editarUsuarioControlador,
   inativarUsuarioControlador,
   deletarUsuarioControlador,
+  editarDadosPessoaisUsuarioControlador,
+  editarSenhaUsuarioControlador,
+  editarImagemPerfilControlador
 } = require('./usuario.controladores')
 const loginControlador = require('./login.controladores')
 const {
@@ -88,12 +91,15 @@ module.exports = {
   detalharUsuarioControlador,
   editarUsuarioControlador,
   deletarUsuarioControlador,
+  editarImagemPerfilControlador,
   loginControlador,
   cadastrarStatusControlador,
   detalharStatusControlador,
   listarStatusControlador,
   editarStatusControlador,
   inativarUsuarioControlador,
+  editarDadosPessoaisUsuarioControlador,
+  editarSenhaUsuarioControlador,
   deletarStatusControlador,
   cadastrarEnderecoControlador,
   listarEnderecosControlador,

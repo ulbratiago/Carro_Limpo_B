@@ -14,6 +14,9 @@ const {
   editarUsuarioControlador,
   inativarUsuarioControlador,
   deletarUsuarioControlador,
+  editarDadosPessoaisUsuarioControlador,
+  editarSenhaUsuarioControlador,
+  editarImagemPerfilControlador
 } = require('../controladores/index.js')
 
 usuarioRota.post(
@@ -24,11 +27,34 @@ usuarioRota.post(
   cadastrarUsuarioControlador
 )
 usuarioRota.get('/', verificaToken, detalharUsuarioControlador)
+
+usuarioRota.put(
+  '/dadospessoais',
+  verificaToken,
+  // validarCorpoRequisicao(usuarioEsquema),
+  verificaCpfCnpj,
+  verificaEmail,
+  editarDadosPessoaisUsuarioControlador
+)
+
+usuarioRota.put(
+  '/alterarsenha',
+  verificaToken,
+  editarSenhaUsuarioControlador
+)
+
+usuarioRota.put(
+  '/editarimagem',
+  multer.single('arquivo'),
+  verificaToken,
+  editarImagemPerfilControlador
+)
+
 usuarioRota.put(
   '/',
   verificaToken,
   multer.single('arquivo'),
-  validarCorpoRequisicao(usuarioEsquema),
+  // validarCorpoRequisicao(usuarioEsquema),
   verificaCpfCnpj,
   verificaEmail,
   editarUsuarioControlador

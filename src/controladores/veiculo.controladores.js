@@ -32,13 +32,9 @@ const detalharVeiculoControlador = async (req, res) => {
 const editarVeiculoControlador = async (req, res) => {
   const { id: usuarioId } = res.locals.usuarioDecodificado
   const { id: veiculoId } = req.params
-  const veiculoEditado = await editarVeiculoServico(
-    req.body,
-    veiculoId,
-    usuarioId
-  )
+  await editarVeiculoServico(req.body, veiculoId, usuarioId)
 
-  return res.status(200).json(veiculoEditado)
+  return res.status(200).json({ mensagem: 'Veículo atualizado com sucesso.' })
 }
 
 const deletarVeiculoControlador = async (req, res) => {

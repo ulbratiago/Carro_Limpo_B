@@ -10,6 +10,9 @@ const {
   editarUsuarioServico,
   inativarUsuarioServico,
   deletarUsuarioServico,
+  editarDadosPessoaisUsuarioServico,
+  editarSenhaUsuarioServico,
+  editarImagemPerfilServico,
 } = require('./usuario.servicos')
 const loginServico = require('./login.servicos')
 const {
@@ -73,7 +76,7 @@ const {
   detalharAgendamentoServico,
   editarAgendamentoServico,
   deletarAgendamentoServico,
-  listarAgendamentoProfissionalServico
+  listarAgendamentoProfissionalServico,
 } = require('./agendamento.servicos')
 
 module.exports = {
@@ -90,6 +93,9 @@ module.exports = {
   listarStatusServico,
   editarStatusServico,
   inativarUsuarioServico,
+  editarDadosPessoaisUsuarioServico,
+  editarSenhaUsuarioServico,
+  editarImagemPerfilServico,
   deletarStatusServico,
   cadastrarEnderecoServico,
   detalharEnderecoServico,
@@ -129,5 +135,5 @@ module.exports = {
   detalharAgendamentoServico,
   editarAgendamentoServico,
   deletarAgendamentoServico,
-  listarAgendamentoProfissionalServico
+  listarAgendamentoProfissionalServico,
 }

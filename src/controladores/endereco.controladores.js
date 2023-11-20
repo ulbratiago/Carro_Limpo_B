@@ -9,9 +9,9 @@ const {
 const cadastrarEnderecoControlador = async (req, res) => {
   const dadosEndereco = req.body
   const { id: usuarioId } = res.locals.usuarioDecodificado
-  const endereco = await cadastrarEnderecoServico(dadosEndereco, usuarioId)
+  await cadastrarEnderecoServico(dadosEndereco, usuarioId)
 
-  return res.status(201).json(endereco)
+  return res.status(201).json({mensagem: "Endereço cadastrado com sucesso."})
 }
 
 const listarEnderecosControlador = async (req, res) => {
@@ -32,9 +32,9 @@ const detalharEnderecoControlador = async (req, res) => {
 const editarEnderecoControlador = async (req, res) => {
   const { id: usuarioId } = res.locals.usuarioDecodificado
   const {id: enderecoId} = req.params
-  const enderecoEditado = await editarEnderecoServico(req.body, enderecoId, usuarioId)
+  await editarEnderecoServico(req.body, enderecoId, usuarioId)
   
-  return res.status(200).json(enderecoEditado)
+  return res.status(200).json({mensagem: "Endereço atualizado com sucesso"})
 }
 
 const deletarEnderecoControlador = async (req, res) => {

@@ -18,7 +18,7 @@ const usuarioEsquema = joi.object({
 
   data_nascimento: joi.date(),
 
-  senha: joi.string().min(8).max(15).required().messages({
+  senha: joi.string().messages({
     'any.required': 'O campo senha é obrigatório',
     'string.empty': 'O campo senha é obrigatório',
     'string.base': 'O campo senha deve conter caracteres válidos',
