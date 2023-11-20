@@ -15,7 +15,15 @@ const {
   inativarProfissionalControlador,
   deletarProfissionalControlador,
   listarProfissionalControlador,
+  cadastrarProfissionalBasicoControlador
 } = require('../controladores/index.js')
+
+profissionalRota.post(
+  '/cadastro',
+  verificaEmail,
+  verificaCpfCnpj,
+  cadastrarProfissionalBasicoControlador
+)
 
 profissionalRota.post(
   '/',

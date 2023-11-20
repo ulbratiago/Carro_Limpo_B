@@ -8,6 +8,7 @@ const {
   editarAgendamentoServico,
   deletarAgendamentoServico,
   listarAgendamentoProfissionalServico,
+  editarStatusAgendamentoServico,
 } = require('../servicos/index.js')
 
 const cadastrarAgendamentoControlador = async (req, res) => {
@@ -44,9 +45,18 @@ const cancelarAgendamentoUsuarioControlador = async (req, res) => {
 }
 
 const listarAgendamentoProfissionalControlador = async (req, res) => {
-  const AgendamentoEncontrado = await listarAgendamentoProfissionalServico(
-    req.query
-  )
+  const { id } = res.locals.usuarioDecodificado
+
+  const AgendamentoEncontrado = await listarAgendamentoProfissionalServico(id)
+
+  return res.status(200).json(AgendamentoEncontrado)
+}
+
+const editarStatusAgendamentoProfissionalControlador = async (req, res) => {
+  const {status} = req.body
+  const {id : agendamento_id} = req.params
+  const { id : usuario_id } = res.locals.usuarioDecodificado
+  const AgendamentoEncontrado = await editarStatusAgendamentoServico(usuario_id, agendamento_id, status )
 
   return res.status(200).json(AgendamentoEncontrado)
 }
@@ -110,4 +120,5 @@ module.exports = {
   detalharAgendamentoAdmControlador,
   editarAgendamentoControlador,
   deletarAgendamentoControlador,
+  editarStatusAgendamentoProfissionalControlador,
 }

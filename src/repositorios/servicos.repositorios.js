@@ -7,6 +7,7 @@ const cadastrarServicoRepositorio = async (dadosServico) => {
 }
 
 const listarServicoRepositorio = async (filtro) => {
+
   const servico = await knex('servicos').where(filtro)
 
   return servico

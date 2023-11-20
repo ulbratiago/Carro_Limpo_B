@@ -8,10 +8,7 @@ const {
   listarStatusFiltroRepositorio,
 } = require('../repositorios/index.js')
 
-const cadastrarAgendamentoServico = async (
-  dadosAgendamento,
-  usuarioLogado
-) => {
+const cadastrarAgendamentoServico = async (dadosAgendamento, usuarioLogado) => {
   const {
     veiculo_id,
     profissional_id,
@@ -60,18 +57,17 @@ const detalharAgendamentoUsuarioServico = async (agendamentoDetalhado) => {
 }
 
 const cancelarAgendamentoUsuarioServico = async (agendamentoDetalhado) => {
-  
   if (agendamentoDetalhado.descricao !== 'Agendado') {
     throw new Erro('Agendamento não pode ser cancelado.', 400)
   }
   const status = await listarStatusFiltroRepositorio({ descricao: 'Cancelado' })
-  
+
   const id = agendamentoDetalhado.id
   const status_id = status.id
   const cancelarAgendamento = await editarAgendamentoRepositorio(
-    {id},
-    {status_id,
-  })
+    { id },
+    { status_id }
+  )
 
   return cancelarAgendamento
 }
@@ -112,6 +108,25 @@ const listarAgendamentoProfissionalServico = async (filtro) => {
   return listaAgendamentos
 }
 
+const editarStatusAgendamentoServico = async (
+  usuario_atualizacao,
+  id,
+  status
+) => {
+  const data_atualizacao = new Date()
+
+  const agendamentoEditado = await editarAgendamentoRepositorio(
+    { id },
+    {
+      status_id: status,
+      usuario_atualizacao,
+      data_atualizacao,
+    }
+  )
+
+  return agendamentoEditado
+}
+
 module.exports = {
   cadastrarAgendamentoServico,
   listarAgendamentoUsuarioServico,
@@ -120,4 +135,5 @@ module.exports = {
   editarAgendamentoServico,
   deletarAgendamentoServico,
   listarAgendamentoProfissionalServico,
+  editarStatusAgendamentoServico,
 }

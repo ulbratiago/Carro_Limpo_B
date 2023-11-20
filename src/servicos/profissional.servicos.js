@@ -59,6 +59,41 @@ const cadastrarProfissionalServico = async (dadosUsuario, arquivo) => {
   return usuarioAtualizado
 }
 
+const cadastrarProfissionalBasicoServico = async (dadosUsuario) => {
+  const { nome, cpf, cnpj, email, celular, data_nascimento, senha } =
+    dadosUsuario
+  const senhaCriptografada = await bcrypt.hash(senha, 10)
+  const data_cadastro = new Date()
+  const tipo_perfil = 1
+
+  const usuarioCadastrado = await cadastrarUsuarioRepositorio({
+    nome,
+    cpf,
+    cnpj,
+    email,
+    celular,
+    data_nascimento,
+    senha: senhaCriptografada,
+    tipo_perfil,
+    data_cadastro,
+  })
+
+
+  const usuarioAtualizado = await cadastrarPlanoContratadoRepositorio({
+    plano_id : 1,
+    usuario_id: usuarioCadastrado.id,
+    valor: 0,
+    data_ativacao: new Date(),
+    validade: 30,
+    usuario_cadastro: usuarioCadastrado.id,
+    ativo: true,
+  })
+
+
+  return usuarioAtualizado
+}
+
+
 const detalharProfissionalServico = async (usuarioDecodificado) => {
   const usuarioId = Number(usuarioDecodificado)
   const usuarioEncontrado = await usuarioPorIdRepositorio(usuarioId)
@@ -166,5 +201,6 @@ module.exports = {
   editarProfissionalServico,
   inativarProfissionalServico,
   deletarProfissionalServico,
-  listarProfissionalServico
+  listarProfissionalServico,
+  cadastrarProfissionalBasicoServico
 }

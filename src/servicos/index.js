@@ -57,6 +57,7 @@ const {
   detalharServicoServico,
   editarServicoServico,
   deletarServicoServico,
+  editarServicoSemImagemServico,
 } = require('./servico.servicos')
 
 const {
@@ -66,6 +67,7 @@ const {
   inativarProfissionalServico,
   deletarProfissionalServico,
   listarProfissionalServico,
+  cadastrarProfissionalBasicoServico
 } = require('./profissional.servicos')
 
 const {
@@ -77,6 +79,7 @@ const {
   editarAgendamentoServico,
   deletarAgendamentoServico,
   listarAgendamentoProfissionalServico,
+  editarStatusAgendamentoServico,
 } = require('./agendamento.servicos')
 
 module.exports = {
@@ -122,12 +125,14 @@ module.exports = {
   detalharServicoServico,
   editarServicoServico,
   deletarServicoServico,
+  editarServicoSemImagemServico,
   cadastrarProfissionalServico,
   detalharProfissionalServico,
   editarProfissionalServico,
   inativarProfissionalServico,
   deletarProfissionalServico,
   listarProfissionalServico,
+  cadastrarProfissionalBasicoServico,
   cadastrarAgendamentoServico,
   listarAgendamentoUsuarioServico,
   detalharAgendamentoUsuarioServico,
@@ -136,4 +141,5 @@ module.exports = {
   editarAgendamentoServico,
   deletarAgendamentoServico,
   listarAgendamentoProfissionalServico,
+  editarStatusAgendamentoServico,
 }

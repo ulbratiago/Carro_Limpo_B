@@ -14,6 +14,8 @@ const {
   detalharServicoControlador,
   editarServicoControlador,
   deletarServicoControlador,
+  listarServicoProfissionalControlador,
+  editarServicoSemImagemControlador
 } = require('../controladores/index.js')
 
 servicoRota.post(
@@ -25,12 +27,24 @@ servicoRota.post(
   verificaId,
   cadastrarServicoControlador
 )
-servicoRota.get('/', listarServicoControlador)
+servicoRota.get('/profissional', verificaToken, listarServicoProfissionalControlador)
+
+servicoRota.get('/',listarServicoControlador)
 servicoRota.get(
   '/:id',
-
+  verificaToken,
   detalharServicoControlador
 )
+
+servicoRota.put(
+  '/semimagem/:id',
+  verificaToken,
+  verificaPerfilUsuario,
+  validarCorpoRequisicao(servicoEsquema),
+  verificaId,
+  editarServicoSemImagemControlador
+)
+
 servicoRota.put(
   '/:id',
   verificaToken,

@@ -4,7 +4,8 @@ const {
   editarProfissionalServico,
   inativarProfissionalServico,
   deletarProfissionalServico,
-  listarProfissionalServico
+  listarProfissionalServico,
+  cadastrarProfissionalBasicoServico
 } = require('../servicos/index.js')
 
 const cadastrarProfissionalControlador = async (req, res) => {
@@ -14,6 +15,15 @@ const cadastrarProfissionalControlador = async (req, res) => {
 
   return res.status(201).json(usuario)
 }
+
+const cadastrarProfissionalBasicoControlador = async (req, res) => {
+  const dadosUsuario = req.body
+  const usuario = await cadastrarProfissionalBasicoServico(dadosUsuario)
+
+  return res.status(201).json(usuario)
+}
+
+
 
 const detalharProfissionalControlador = async (req, res) => {
   const { id: usuarioId } = res.locals.usuarioDecodificado
@@ -59,5 +69,6 @@ module.exports = {
   editarProfissionalControlador,
   inativarProfissionalControlador,
   deletarProfissionalControlador,
-  listarProfissionalControlador
+  listarProfissionalControlador,
+  cadastrarProfissionalBasicoControlador
 }

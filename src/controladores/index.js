@@ -58,6 +58,8 @@ const {
   detalharServicoControlador,
   editarServicoControlador,
   deletarServicoControlador,
+  listarServicoProfissionalControlador,
+  editarServicoSemImagemControlador
 } = require('./servico.controladores')
 
 const {
@@ -67,6 +69,7 @@ const {
   inativarProfissionalControlador,
   deletarProfissionalControlador,
   listarProfissionalControlador,
+  cadastrarProfissionalBasicoControlador
 } = require('./profissional.controladores')
 
 const {
@@ -80,6 +83,7 @@ const {
   detalharAgendamentoAdmControlador,
   editarAgendamentoControlador,
   deletarAgendamentoControlador,
+  editarStatusAgendamentoProfissionalControlador
 } = require('./agendamento.controladores')
 
 module.exports = {
@@ -126,12 +130,15 @@ module.exports = {
   detalharServicoControlador,
   editarServicoControlador,
   deletarServicoControlador,
+  listarServicoProfissionalControlador,
+  editarServicoSemImagemControlador,
   cadastrarProfissionalControlador,
   detalharProfissionalControlador,
   editarProfissionalControlador,
   inativarProfissionalControlador,
   deletarProfissionalControlador,
   listarProfissionalControlador,
+  cadastrarProfissionalBasicoControlador,
   cadastrarAgendamentoControlador,
   listarAgendamentoUsuarioControlador,
   detalharAgendamentoUsuarioControlador,
@@ -142,4 +149,5 @@ module.exports = {
   detalharAgendamentoAdmControlador,
   editarAgendamentoControlador,
   deletarAgendamentoControlador,
+  editarStatusAgendamentoProfissionalControlador
 }

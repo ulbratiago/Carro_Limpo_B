@@ -1,7 +1,6 @@
 const knex = require('../config/conexao_DB')
 
 const cadastrarAgendamentoRepositorio = async (dadosAgendamento) => {
-
   const Agendamento = await knex('agendamentos')
     .insert(dadosAgendamento)
     .returning('*')
@@ -71,12 +70,14 @@ const detalharAgendamentoRepositorio = async (id, usuarioLogado) => {
 }
 
 const editarAgendamentoRepositorio = async (id, camposParaEditar) => {
+  
+
   const agendamentoEditado = await knex('agendamentos')
     .where(id)
     .update(camposParaEditar)
-    .debug()
 
-  return agendamentoEditado[0]
+  
+  return agendamentoEditado
 }
 
 const deletarAgendamentoRepositorio = async (filtro) => {
@@ -89,9 +90,31 @@ const deletarAgendamentoRepositorio = async (filtro) => {
 }
 
 const listarAgendamentoProfissionalRepositorio = async (filtro) => {
-  const agendamentos = await knex('agendamentos').where(filtro).returning('*')
+  const agendamento = await knex('agendamentos')
+    .where({ 'agendamentos.profissional_id': filtro })
+    .select(
+      'agendamentos.id',
+      'agendamentos.data_agendamento',
+      'agendamentos.horario_agendamento',
+      'agendamentos.valor',
+      'usuario.nome as nome_usuario',
+      'veiculo.modelo',
+      'veiculo.placa',
+      'profissional.nome as nome_profissional',
+      'servico.nome as nome_servico',
+      'status.descricao'
+    )
+    .leftJoin('usuarios as usuario', 'agendamentos.usuario_id', 'usuario.id')
+    .leftJoin('veiculos as veiculo', 'agendamentos.veiculo_id', 'veiculo.id')
+    .leftJoin(
+      'usuarios as profissional',
+      'agendamentos.profissional_id',
+      'profissional.id'
+    )
+    .leftJoin('servicos as servico', 'agendamentos.servico_id', 'servico.id')
+    .leftJoin('status', 'agendamentos.status_id', 'status.id')
 
-  return agendamentos
+  return agendamento
 }
 
 module.exports = {

@@ -35,7 +35,7 @@ const cadastrarServicoServico = async (dadosServico, usuario_id, arquivo) => {
   const imagem = await enviarImagem(path, arquivo.buffer, arquivo.mimetype)
 
   const servicoAtualizado = await editarServicoRepositorio(
-    { imagem : imagem.path, url_imagem: imagem.url },
+    { imagem: imagem.path, url_imagem: imagem.url },
     { id: servicoCadastrado.id }
   )
 
@@ -49,8 +49,7 @@ const listarServicoServico = async (usuario_id) => {
 }
 
 const detalharServicoServico = async (id) => {
-  console.log(id);
-  const servicoEncontrado = await listarServicoRepositorio({id})
+  const servicoEncontrado = await listarServicoRepositorio({ id })
 
   return servicoEncontrado[0]
 }
@@ -65,17 +64,13 @@ const editarServicoServico = async (
 
   const data_atualizacao = new Date()
 
-  const imagem = async () => {
-    if (arquivo) {
-      const extensao = arquivo.mimetype.split('/')
+  const extensao = arquivo.mimetype.split('/')
 
-      const path = `servico/${id}/Imagem_Servico_${nome.replaceAll(' ', '_')}.${
-        extensao[1]
-      }`
+  const path = `servico/${id}/Imagem_Servico_${nome.replaceAll(' ', '_')}.${
+    extensao[1]
+  }`
 
-      return await enviarImagem(path, arquivo.buffer, arquivo.mimetype)
-    }
-  }
+  const imagem = await enviarImagem(path, arquivo.buffer, arquivo.mimetype)
 
   const servicoEditado = await editarServicoRepositorio(
     {
@@ -94,8 +89,32 @@ const editarServicoServico = async (
   return servicoEditado
 }
 
+const editarServicoSemImagemServico = async (
+  id,
+  dadosServico,
+  usuario_atualizacao
+) => {
+  const { nome, descricao, categoria_id, valor } = dadosServico
+
+  const data_atualizacao = new Date()
+
+  const servicoEditado = await editarServicoRepositorio(
+    {
+      nome,
+      descricao,
+      categoria_id,
+      valor,
+      usuario_atualizacao,
+      data_atualizacao,
+    },
+    { id }
+  )
+
+  return servicoEditado
+}
+
 const deletarServicoServico = async (id, usuario_id) => {
-  const planoDeletado = await deletarServicoRepositorio({id, usuario_id})
+  const planoDeletado = await deletarServicoRepositorio({ id, usuario_id })
 
   return planoDeletado
 }
@@ -106,4 +125,5 @@ module.exports = {
   detalharServicoServico,
   editarServicoServico,
   deletarServicoServico,
+  editarServicoSemImagemServico,
 }

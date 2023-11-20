@@ -67,7 +67,7 @@ const cadastrarPlanoContratadoRepositorio = async (dadosPlano) => {
   const planoContratado = await knex('plano_ativo')
     .insert(dadosPlano)
     .returning('*')
-
+  console.log(planoContratado);
   return planoContratado[0]
 }
 
